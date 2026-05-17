@@ -20,7 +20,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      # Native Node 24 support added in recent action tags
       - name: Checkout Code
         uses: actions/checkout@v4.2.2
 
@@ -32,7 +31,7 @@ jobs:
 
       - name: Install Dependencies & Build
         run: |
-          npm ci
+          npm install
           npm run build -- --base=/${{ github.event.repository.name }}/
 
       - name: Upload Production Files
