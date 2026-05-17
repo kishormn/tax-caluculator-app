@@ -19,17 +19,15 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    # Force GitHub's internal actions to safely run on Node.js 24 ahead of the deadline
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
     steps:
+      # Native Node 24 support added in recent action tags
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.1.0
         with:
-          node-version: 24 # Updated target environment to Node 24
+          node-version: 24
           cache: 'npm'
 
       - name: Install Dependencies & Build
